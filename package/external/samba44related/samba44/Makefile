@@ -65,10 +65,7 @@ EXTRA_LDFLAGS += -Wl,--gc-sections
 	_python_exec_prefix="/usr/bin" \
 	PYTHON="$(STAGING_DIR_HOST)/bin/python2"
 	
-CONFIGURE_VARS += \
-	PYTHON_CONFIG="$(STAGING_DIR)/usr/bin/python2-config" \
-	python_LDFLAGS="" \
-	python_LIBDIR=""
+TARGET_CFLAGS+=-I$(STAGING_DIR)/usr/include/python2.7 $(TARGET_CFLAGS)
 
 # XXX: Be sure to take care of commas(,) or you will get 'out of range' error when waf configuring settings.
 SAMBA4_IDMAP_MODULES_SHARED := idmap_ad,idmap_rid,idmap_adex,idmap_hash,idmap_tdb2,
@@ -77,7 +74,7 @@ SAMBA4_PDB_MODULES_SHARED := pdb_wbc_sam,pdb_samba4,
 SAMBA4_PDB_MODULES_STATIC := pdb_smbpasswd,pdb_tdbsam,
 SAMBA4_AUTH_MODULES_SHARED := auth_wbc,auth_script,auth_samba4
 SAMBA4_AUTH_MODULES_STATIC := auth_sam,auth_unix,
-SAMBA4_VFS_MODULES_STATIC := vfs_default,vfs_aio_pthread
+SAMBA4_VFS_MODULES_STATIC := vfs_default,vfs_aio_pthread,vfs_fruit,vfs_catia,vfs_streams_xattr
 
 
 SAMBA4_MODULES_SHARED = "${SAMBA4_IDMAP_MODULES_SHARED}${SAMBA4_PDB_MODULES_SHARED}${SAMBA4_AUTH_MODULES_SHARED}"
