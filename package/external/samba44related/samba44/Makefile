@@ -8,7 +8,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=samba44
-PKG_VERSION:=4.4.8
+PKG_VERSION:=4.5.8
 PKG_RELEASE:=1
 
 PKG_SOURCE_URL:= \
@@ -148,6 +148,7 @@ define Build/Configure
 			\nChecking uname machine type: \"$(ARCH)\" \
 			\nChecking uname version type: \"#1 Tue Nov 1 12:34:56 UTC 2013\" \
 			\nChecking uname sysname type: \"Linux\" \
+                        \nChecking whether fcntl lock supports open file description locks: OK \
 			\n" ; \
 		$(CONFIGURE_VARS) \
 		./buildtools/bin/waf configure -j$(shell nproc) \
